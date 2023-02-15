@@ -19,7 +19,7 @@ output_location = "'C:/Users/phong/Desktop/Lynch Lab/Chimera Script/output/test"
 xyz_cords = "-29.1,27.7,17.7"
 xyz_size = "34.1,23.7,25"
 number_test = 2
-steps = 1000
+steps = 4000
 # loop through the files, opening, processing, and closing each in turn
 for fn in file_names:
 	replyobj.status("Processing " + fn) # show what file we're working on
