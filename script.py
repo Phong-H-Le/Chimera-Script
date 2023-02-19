@@ -24,23 +24,15 @@ steps = 4000
 for fn in file_names:
 	replyobj.status("Processing " + fn) # show what file we're working on
 	rc("open " + ligands_dir+"/" + fn)
-	# rc("align ligand ~ligand") # put ligand in front of remainder of molecule
-	rc("select")
-	rc("focus #0") # center/zoom ligand
-	# rc("surf") # surface receptor
-	# rc("preset apply publication 1") # make everything look nice
-	# rc("surftransp 15") # make the surface a little bit see-through
-	# save image to a file that ends in .png rather than .pdb
-	# png_name = fn[:-3] + "png"
-	# rc("copy file " + png_name + " supersample 3")
 	rc("addh")
 	rc("minimize nogui 'true' nsteps "+str(steps))
 	rc("open " + receptors_dir+"/"+receptor_names[0])
 	rc("vina docking receptor #1 ligand #0 wait 'true' backend local location " \
 	+ vina_location +" search_center "+xyz_cords+" search_size "+xyz_size \
 	+ " output "+output_location+str(number_test)+".txt'")
+	rc("focus")
+	rc("save test"+str(fn)+"_"+str(receptor_names[0]))
+	rc("close session")
 	number_test+=1
-	rc("close all")
-
 # uncommenting the line below will cause Chimera to exit when the script is done
 #rc("stop now")
