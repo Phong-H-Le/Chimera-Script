@@ -4,6 +4,7 @@ from chimera import runCommand as rc # use 'rc' as shorthand for runCommand
 from chimera import replyobj # for emitting status messages
 import numpy as np
 import matplotlib.pyplot as plt
+import functions
 
 # change to folder with data files
 os.chdir("/Users/phong/Desktop/Lynch Lab/Chimera Script")
@@ -29,8 +30,11 @@ for fn in file_names:
 	rc("vina docking receptor #1 ligand #0 wait 'true' backend local location " \
 	+ vina_location +" search_center "+xyz_cords+" search_size "+xyz_size \
 	+ " output "+output_location+str(number_test)+".txt'")
-	rc("focus")
 	rc("save test"+str(fn)+"_"+str(receptor_names[0]))
+	rc("color green #2.1")
+	rc("open " + receptors_dir+'/mev kinase with mva.pdb')
+	rc("focus #3")
+	rc("copy file " + fn[:-4] + receptor_names[0][:-3]+".png") 
 	rc("close session")
 	number_test+=1
 # uncommenting the line below will cause Chimera to exit when the script is done
